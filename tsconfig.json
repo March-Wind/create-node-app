@@ -1,0 +1,44 @@
+{
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "experimentalResolver": true,
+    "compilerOptions": {
+      "esModuleInterop": true,
+    }
+  },
+  "compilerOptions": {
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "target": "esnext",
+    "module": "esnext",
+    "sourceMap": false,
+    "outDir": "./lib",
+    "jsx": "react",
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "noUnusedParameters": true,
+    "strictPropertyInitialization": false,
+    "strict": true,
+    "lib": [
+      "DOM",
+      "esnext"
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+  },
+  "exclude": [
+    "node_modules",
+    "lib"
+  ],
+  "include": [
+    "**/*"
+  ]
+}
