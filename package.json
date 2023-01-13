@@ -1,8 +1,9 @@
 {
   "name": "@marchyang/create-node-app",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "",
   "main": "./dist/main.cjs",
+  "bin": "./dist/main.cjs",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -39,7 +40,7 @@
   },
   "files": [
     "dist/*",
-    "*.md",
+    "readme.md",
     "package.json"
   ]
 }

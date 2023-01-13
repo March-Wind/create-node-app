@@ -1,6 +1,5 @@
 import { Listr } from 'listr2'
 import { execaSync, execa } from 'execa'
-import sum from './tool/sum';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'node:path';
@@ -116,11 +115,6 @@ const tasks = new Listr<Ctx>(
                     {
                         title: 'set .gitignore',
                         task: () => {
-                            // fs.writeFileSync(path.resolve(__dirname, './template/.gitignore'), 
-                            // `/node_modules
-                            // /lib
-                            // /dist
-                            // .DS_Store`)
                             return  execa('cp',  [path.resolve(__dirname, './template/babel.config.js'), process.cwd()])
                         }
                     },
@@ -153,9 +147,7 @@ const tasks = new Listr<Ctx>(
 const fn = async () => {
     try {
         await tasks.run()
-        console.log(99);
     } catch (e) {
-        debugger
         console.error(e)
     }
 }

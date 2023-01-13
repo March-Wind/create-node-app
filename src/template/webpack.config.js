@@ -1,40 +1,20 @@
 import path from 'path'
+import webpack from 'webpack';
 import babelConfig from './babel.config.js';
 const webpackConfig = {
     entry: './src/index.ts',
     devtool: 'source-map',
-    mode: 'development',
+    mode: 'production',
     target: "node",
     output: {
         filename: '[name].cjs',
         path: path.resolve(process.cwd(), `dist`),
-        // path: 'dist2',
-        // libraryTarget: "umd",
-        // globalObject: "this",
-        // library: {
-        //     name: '[name]',
-        //     type: 'commonjs',
-        //     // export: 'default',
-        // },
         clean: true,
     },
     
     resolve: {
         extensions: ['.tsx', '.ts', '.js', 'jsx']
     },
-    // externals: [nodeExternals()], // 为了不把node_modules目录下的第三方模块打包进输出文件中,因为nodejs默认会去node_modules目录下去寻找和使用第三方模块。
-    // optimization: {
-    //     splitChunks: {
-    //         cacheGroups: {
-    //             styles: {
-    //                 name: "styles",
-    //                 type: "css/mini-extract",
-    //                 chunks: "all",
-    //                 enforce: true,
-    //             },
-    //         },
-    //     },
-    // },
     module:{
       rules:[
         {oneOf: [
@@ -53,7 +33,13 @@ const webpackConfig = {
         },
         ]}
       ]
-    }
+    },
+    plugins:[
+      new webpack.BannerPlugin({
+        banner:'#!/usr/bin/env node',
+        raw: true
+      })
+    ]
 
 }
 
