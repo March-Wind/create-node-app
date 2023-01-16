@@ -86,6 +86,7 @@ const tasks = new Listr<Ctx>(
                     "build:prod": "webpack"
                 }
                 configObj.main = "./dist/index.js";
+                configObj.type = "module";
                 configObj.files = [
                     "dist/*",
                     "*.md",
