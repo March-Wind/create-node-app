@@ -41,7 +41,7 @@ const tasks = new Listr<Ctx>(
                     {
                         title: 'install webpack env',
                         task: () => {
-                            return execa('npm', ['i', '-D', 
+                            return execaSync('npm', ['i', '-D', 
                                 'webpack@5.75.0',
                                 'webpack-cli@5.0.1',
                             ]);
@@ -50,7 +50,7 @@ const tasks = new Listr<Ctx>(
                     {
                         title: 'install babel component',
                         task: () => {
-                            return execa('npm', ['i', '-D', 
+                            return execaSync('npm', ['i', '-D', 
                                 "@babel/core@7.20.5",
                                 "@babel/plugin-proposal-class-properties@7.18.6",
                                 "@babel/plugin-proposal-decorators@7.20.5",
@@ -116,7 +116,7 @@ const tasks = new Listr<Ctx>(
                     {
                         title: 'set .gitignore',
                         task: () => {
-                            return  execa('cp',  [path.resolve(__dirname, './template/babel.config.js'), process.cwd()])
+                            return  execa('cp',  [path.resolve(__dirname, './template/.gitignore'), process.cwd()])
                         }
                     },
                     {
@@ -133,12 +133,12 @@ const tasks = new Listr<Ctx>(
                 execaSync('cp',[path.resolve(__dirname, './template/src/index.ts'), path.resolve(process.cwd(),'src')])
             }
         },
-        // {
-        //     title: 'add eslint and jest',
-        //     task: (ctx, task) => {
-        //         execaSync('npx',['@marchyang/add-auxiliary-tools'])
-        //     }
-        // },
+        {
+            title: 'add eslint and jest',
+            task: (ctx, task) => {
+                execaSync('npx',['--ignore-existing','@marchyang/project-helper'])
+            }
+        },
     ],
     {
         /* options */
