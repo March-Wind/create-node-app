@@ -1,10 +1,12 @@
 import { Listr } from 'listr2'
 import { execaSync, execa } from 'execa'
 import fs from 'fs';
-import { fileURLToPath } from 'url';
-import path, { dirname } from 'node:path';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { getCurrentFilePath } from './utils';
+// import { fileURLToPath } from 'url';
+import path from 'node:path';
+// const __filename = fileURLToPath(import.meta.url);
+// const dirname = process.cwd() + '/dist';
+const {dirname} = getCurrentFilePath();
 interface Ctx {
     /* some variables for internal use */
 }
@@ -102,26 +104,28 @@ const tasks = new Listr<Ctx>(
                     {
                         title: 'set tsconfig',
                         task: () => {
-                            return execa('cp',  [path.resolve(__dirname, './template/tsconfig.json'), process.cwd()])
+                            return execa('cp',  [path.resolve(dirname, './template/tsconfig.json'), process.cwd()])
                         }
                     },
                     {
                         title: 'set webpack config',
-                        task: () => execa('cp',  [path.resolve(__dirname, './template/webpack.config.js'), process.cwd()])
+                        task: () => execa('cp',  [path.resolve(dirname, './template/webpack.config.js'), process.cwd()])
                     },
                     {
                         title: 'set babel config',
-                        task: () => execa('cp',  [path.resolve(__dirname, './template/babel.config.js'), process.cwd()])
+                        task: () => execa('cp',  [path.resolve(dirname, './template/babel.config.js'), process.cwd()])
                     },
                     {
                         title: 'set .gitignore',
                         task: () => {
-                            return  execa('cp',  [path.resolve(__dirname, './template/.gitignore'), process.cwd()])
+                            const data = `/node_modules\n/lib\n/dist\n.DS_Store`
+                            fs.writeFileSync(path.resolve(process.cwd(),'.gitignore'),data)
+                            // return  execa('cp',  ['-rf', path.resolve(dirname, './template/.gitignore'), process.cwd()])
                         }
                     },
                     {
                         title: 'set .npmignore',
-                        task: () => execa('cp',  [path.resolve(__dirname, './template/.npmignore'), process.cwd()])
+                        task: () => execa('cp',  ['-rf', path.resolve(dirname, './template/.npmignore'), process.cwd()])
                     },
                 ])
             }
@@ -130,7 +134,7 @@ const tasks = new Listr<Ctx>(
             title: 'New src directory',
             task: () => {
                 fs.mkdirSync('src')
-                execaSync('cp',[path.resolve(__dirname, './template/src/index.ts'), path.resolve(process.cwd(),'src')])
+                execaSync('cp',[path.resolve(dirname, './template/src/index.ts'), path.resolve(process.cwd(),'src')])
             }
         },
         {

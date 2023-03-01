@@ -32,7 +32,12 @@ const webpackConfig = {
             }]
         },
         ]}
-      ]
+      ],
+      parser: {
+        javascript: {
+          importMeta:false
+        },
+      },
     },
     plugins:[
       new webpack.BannerPlugin({

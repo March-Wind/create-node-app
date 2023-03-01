@@ -1,6 +1,6 @@
 {
   "name": "@marchyang/create-node-app",
-  "version": "1.1.4",
+  "version": "1.2.3",
   "description": "",
   "main": "./dist/main.cjs",
   "bin": "./dist/main.cjs",
@@ -11,7 +11,7 @@
     "dev2": "ts-node ./src/index.ts",
     "dev:debug": " node --inspect-brk  --loader ts-node/esm ./src/index.ts",
     "build:js": "npm run clean:lib && tsc && tsc-alias",
-    "build:prod": "webpack"
+    "build:prod": "webpack && cp -r ./src/template ./dist"
   },
   "author": "",
   "license": "ISC",
