@@ -1,6 +1,6 @@
 {
   "name": "@marchyang/create-node-app",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "",
   "main": "./dist/main.cjs",
   "bin": "./dist/main.cjs",
@@ -14,7 +14,11 @@
     "build:prod": "webpack && cp -r ./src/template ./dist"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/March-Wind/create-node-app"
+  },
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
