@@ -1,6 +1,6 @@
 {
   "name": "@marchyang/create-node-app",
-  "version": "1.2.9",
+  "version": "1.3.3",
   "description": "create node project",
   "main": "./dist/main.cjs",
   "bin": "./dist/main.cjs",
