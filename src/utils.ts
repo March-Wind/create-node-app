@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'node:path';
+import fs from 'fs';
 
 const moduleType = () => {
   // 判断当前模块是否是ESM模块
@@ -25,4 +26,20 @@ const getCurrentFilePath = () => {
     }
   }
 }
-export {moduleType, getCurrentFilePath} ;
+/**
+ * 检查文件或者文件夹是否存在
+ *
+ * @param {string} path
+ * @return {*}  {boolean}
+ */
+const checkExistence = (path: string): boolean => {
+  try {
+    fs.accessSync(path);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+
+export {moduleType, getCurrentFilePath, checkExistence} ;

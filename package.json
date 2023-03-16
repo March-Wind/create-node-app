@@ -1,10 +1,14 @@
 {
   "name": "@marchyang/create-node-app",
-  "version": "1.2.7",
-  "description": "",
+  "version": "1.2.9",
+  "description": "create node project",
   "main": "./dist/main.cjs",
   "bin": "./dist/main.cjs",
   "type": "module",
+  "keywords": [
+    "node",
+    "create node project"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --loader ts-node/esm ./src/index.ts",

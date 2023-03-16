@@ -25,7 +25,6 @@
     "strictPropertyInitialization": false,
     "strict": true,
     "lib": [
-      "DOM",
       "esnext"
     ],
     "paths": {
@@ -40,5 +39,8 @@
   ],
   "include": [
     "**/*"
+  ],
+  "files": [
+    "./src/global.d.ts"
   ]
 }

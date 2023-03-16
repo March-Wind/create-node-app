@@ -1,7 +1,7 @@
 import { Listr } from 'listr2'
 import { execaSync, execa } from 'execa'
 import fs from 'fs';
-import { getCurrentFilePath } from './utils';
+import { getCurrentFilePath, checkExistence } from './utils';
 // import { fileURLToPath } from 'url';
 import path from 'node:path';
 // const __filename = fileURLToPath(import.meta.url);
@@ -131,12 +131,26 @@ const tasks = new Listr<Ctx>(
             }
         },
         {
-            title: 'New src directory',
+            title: 'new src directory',
             task: () => {
-                fs.mkdirSync('src')
+                const scrPath = path.resolve(process.cwd(),'src')
+                if(!checkExistence(scrPath)){
+                    fs.mkdirSync('src')
+                }
                 execaSync('cp',[path.resolve(dirname, './template/src/index.ts'), path.resolve(process.cwd(),'src')])
             }
         },
+        {
+            title: 'set global.d.ts',
+            task:()=> {
+                const scrPath = path.resolve(process.cwd(),'src')
+                if(!checkExistence(scrPath)){
+                    fs.mkdirSync('src')
+                }
+                execaSync('cp',[path.resolve(dirname, './template/src/global.d.ts'), path.resolve(process.cwd(),'src')])
+            }
+        },
+
         {
             title: 'add eslint and jest',
             task: (ctx, task) => {
