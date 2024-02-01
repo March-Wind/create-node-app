@@ -154,8 +154,12 @@ const tasks = new Listr<Ctx>(
         {
             title: 'add eslint and jest',
             task: (ctx, task) => {
-                execaSync('npx',['--ignore-existing','@marchyang/project-helper'])
-            }
+                execaSync('npx',['--ignore-existing','@marchyang/project-helper'],{ 
+                    // stdio: 'inherit', 
+                    // shell: true,
+                })
+            },
+            // options: { persistentOutput: true }
         },
     ],
     {
